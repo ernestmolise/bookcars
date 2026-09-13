@@ -2,7 +2,7 @@
 
 FROM node:lts-alpine
 WORKDIR /bookcars/backend
-COPY ./backend ./
+COPY . ./
 COPY ./packages /bookcars/packages
 RUN npm install
 
