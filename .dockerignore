@@ -17,3 +17,6 @@ mobile/
 __config/
 __scripts/
 __services/
+!.env.docker
+!admin/.env.docker
+!frontend/.env.docker
