@@ -6,5 +6,5 @@ COPY . ./
 COPY ./packages /bookcars/packages
 RUN npm install
 
-CMD [ "npm", "run", "start:setup"]
+CMD [ "npm", "start" ]
 EXPOSE 4002
