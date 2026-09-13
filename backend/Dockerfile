@@ -9,7 +9,8 @@ RUN npm install
 
 COPY backend/ ./
 COPY packages/ /bookcars/packages/
+RUN npm run build
 
-CMD ["npm", "run", "start:setup"]
+CMD ["npm", "start"]
 
 EXPOSE 4002
