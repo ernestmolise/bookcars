@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-
+# Force cache refresh 2026-09-13
 FROM node:lts-alpine
 WORKDIR /bookcars/backend
 COPY . ./
