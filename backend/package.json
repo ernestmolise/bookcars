@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
     "dev": "nodemon",
     "dev:setup": "npm run setup && nodemon",
     "build": "rimraf dist && cross-env NODE_OPTIONS=\"--max-old-space-size=1024\" tsc --build --verbose && babel dist -d dist",
