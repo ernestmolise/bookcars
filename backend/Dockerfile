@@ -1,10 +1,15 @@
 # syntax=docker/dockerfile:1
-# Force cache refresh 2026-09-13
+
 FROM node:lts-alpine
+
 WORKDIR /bookcars/backend
-COPY . ./
-COPY ./packages /bookcars/packages
+
+COPY backend/package*.json ./
 RUN npm install
 
-CMD [ "npm", "run", "start:setup" ]
+COPY backend/ ./
+COPY packages/ /bookcars/packages/
+
+CMD ["npm", "run", "start:setup"]
+
 EXPOSE 4002
