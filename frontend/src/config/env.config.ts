@@ -45,6 +45,10 @@ const CURRENCIES: Currency[] = [
     symbol: '€',
   },
   {
+  code: 'BWP',
+  symbol: 'P',
+  },
+  {
     code: 'GBP',
     symbol: '£',
   },
