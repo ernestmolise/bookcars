@@ -14,7 +14,7 @@ const PayPalProvider = ({ children }: PayPalProviderProps) => (
     <PayPalScriptProvider
       options={{
         clientId: env.PAYPAL_CLIENT_ID,
-        currency: PaymentService.getCurrency(),
+        currency: 'USD',
         intent: 'capture',
         locale: PayPalService.getLocale(),
         // buyerCountry: 'US',
