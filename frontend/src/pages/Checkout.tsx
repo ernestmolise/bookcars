@@ -928,14 +928,28 @@ const Checkout = () => {
                                 const _description = `${car.name} - ${daysLabel} - ${pickupLocation._id === dropOffLocation._id ? pickupLocation.name : `${pickupLocation.name} - ${dropOffLocation.name}`}`
                                 const description = bookcarsHelper.truncateString(_description, PayPalService.ORDER_DESCRIPTION_MAX_LENGTH)
                                 let amount = price
-                                if (payDeposit) {
-                                  amount = depositPrice
-                                } else if (payInFull) {
-                                  amount = price + depositPrice
-                                }
-                                const orderId = await PayPalService.createOrder(bookingId!, amount, PaymentService.getCurrency(), name, description)
-                                return orderId
-                              }}
+if (payDeposit) {
+  amount = depositPrice
+} else if (payInFull) {
+  amount = price + depositPrice
+}
+
+const paypalAmount = await bookcarsHelper.convertPrice(
+  amount,
+  PaymentService.getCurrency(),
+  'USD'
+)
+
+const orderId = await PayPalService.createOrder(
+  bookingId!,
+  paypalAmount,
+  'USD',
+  name,
+  description
+)
+
+return orderId
+}}
                               onApprove={async (data, actions) => {
                                 try {
                                   setPayPalProcessing(true)
