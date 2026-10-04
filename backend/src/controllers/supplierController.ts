@@ -405,6 +405,7 @@ export const getFrontendSuppliers = async (req: Request, res: Response) => {
       seats,
       from,
       to,
+      includeAlreadyBookedCars,
     } = body
 
     if (!from) {
@@ -433,9 +434,14 @@ export const getFrontendSuppliers = async (req: Request, res: Response) => {
         { gearbox: { $in: gearbox } },
         { fuelPolicy: { $in: fuelPolicy } },
         { available: true },
-        { fullyBooked: { $in: [false, null] } },
+        
       ],
     }
+    if (!includeAlreadyBookedCars) {
+  $match.$and!.push({
+    fullyBooked: { $in: [false, null] },
+  })
+}
 
     if (carSpecs) {
       if (carSpecs.aircon) {
@@ -565,8 +571,9 @@ export const getFrontendSuppliers = async (req: Request, res: Response) => {
           $match: {
             $expr: {
               $or: [
-                { $eq: [{ $ifNull: ['$blockOnPay', false] }, false] },
-                { $eq: [{ $size: '$overlappingBookings' }, 0] }
+                 { $eq: [includeAlreadyBookedCars, true] },
+                  { $eq: [{ $ifNull: ['$blockOnPay', false] }, false] },
+                  { $eq: [{ $size: '$overlappingBookings' }, 0] }
               ]
             }
           }

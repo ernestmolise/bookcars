@@ -1026,7 +1026,7 @@ export const getFrontendCars = async (req: Request, res: Response) => {
         { type: { $in: carType } },
         { gearbox: { $in: gearbox } },
         { available: true },
-        { fullyBooked: { $in: [false, null] } },
+        
       ],
     }
 
