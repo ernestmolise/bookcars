@@ -164,9 +164,13 @@ export const confirm = async (user: env.User, supplier: env.User, booking: env.B
       + `<br><br>${i18n.t('BOOKING_CONFIRMED_PART8')}<br><br>`
       + `${i18n.t('BOOKING_CONFIRMED_PART9')}${car.supplier.fullName}${i18n.t('BOOKING_CONFIRMED_PART10')}${dropOffLocationName}${i18n.t('BOOKING_CONFIRMED_PART11')}`
       + `${to} ${i18n.t('BOOKING_CONFIRMED_PART12')}`
-      + `<br><br>${i18n.t('BOOKING_CONFIRMED_PART13')}<br><br>${i18n.t('BOOKING_CONFIRMED_PART14')}${env.FRONTEND_HOST}<br><br>
-        ${i18n.t('REGARDS')}<br>
-        </p>`,
+ + `<br><br>${i18n.t('BOOKING_CONFIRMED_PART13')}<br><br>${i18n.t('BOOKING_CONFIRMED_PART14')}${env.FRONTEND_HOST}<br><br>`
++ `<strong>${i18n.t('BOOKING_CONFIRMED_PART15')}</strong><br><br>`
++ `${i18n.t('BOOKING_CONFIRMED_PART16')}<br>`
++ `${i18n.t('BOOKING_CONFIRMED_PART17')}<br>`
++ `${i18n.t('BOOKING_CONFIRMED_PART18')}<br><br>`
++ `${i18n.t('REGARDS')}<br>
+  </p>`,
   }
 
   if (contractFile) {
