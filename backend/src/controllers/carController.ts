@@ -1203,15 +1203,22 @@ export const getFrontendCars = async (req: Request, res: Response) => {
           }
         },
         {
-          $match: {
-            $expr: {
-              $or: [
-                { $eq: [{ $ifNull: ['$blockOnPay', false] }, false] },
-                { $eq: [{ $size: '$overlappingBookings' }, 0] }
-              ]
-            }
-          }
-        },
+        
+  $addFields: {
+    fullyBooked: {
+      $or: [
+        { $eq: [{ $ifNull: ['$fullyBooked', false] }, true] },
+        {
+          $and: [
+            { $eq: [{ $ifNull: ['$blockOnPay', false] }, true] },
+            { $gt: [{ $size: '$overlappingBookings' }, 0] }
+          ]
+        }
+      ]
+    }
+  }
+},
+        
         // end of booking overlap check -----------------------------------
 
         // begining of supplierCarLimit -----------------------------------
