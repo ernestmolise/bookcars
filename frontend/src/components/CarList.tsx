@@ -223,7 +223,9 @@ const CarList = ({
           && (
             <Card variant="outlined" className="empty-list">
               <CardContent>
-                <Typography color="textSecondary">{strings.EMPTY_LIST}</Typography>
+                <Typography color="textSecondary">
+                   Welcome! Click Search again to see the available cars.
+                </Typography>
               </CardContent>
             </Card>
           )
