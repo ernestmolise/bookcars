@@ -169,8 +169,9 @@ export const confirm = async (user: env.User, supplier: env.User, booking: env.B
 + `${i18n.t('BOOKING_CONFIRMED_PART16')}<br>`
 + `${i18n.t('BOOKING_CONFIRMED_PART17')}<br>`
 + `${i18n.t('BOOKING_CONFIRMED_PART18')}<br><br>`
-+ `${i18n.t('REGARDS')}<br>
-  </p>`,
++ `Kind regards,<br>
+        EMOV Car Rental Team<br>
+        </p>`,
   }
 
   if (contractFile) {
