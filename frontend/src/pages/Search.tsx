@@ -332,7 +332,7 @@ const Search = () => {
                 // distance={distance}
                 // onLoad={() => setLoadingPage(false)}
                 hideSupplier={env.HIDE_SUPPLIERS}
-                // includeAlreadyBookedCars
+                includeAlreadyBookedCars
                 includeComingSoonCars
               />
             </div>
