@@ -224,7 +224,11 @@ const CarList = ({
             <Card variant="outlined" className="empty-list">
               <CardContent>
                 <Typography color="textSecondary">
-                   Welcome! Click Search again to see the available cars.
+                    Welcome to EMOV Car Rental
+                  <br />
+                  <span style={{ fontSize: '0.9em' }}>
+                  Press SEARCH to view our available car listings.
+                 </span>
                 </Typography>
               </CardContent>
             </Card>
