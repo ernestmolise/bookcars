@@ -211,8 +211,22 @@ export const flattenSuppliers = (suppliers: bookcarsTypes.User[]): string[] =>
  * @param {?Date} [to]
  * @returns {number}
  */
-export const days = (from?: Date, to?: Date) =>
-  (from && to && Math.ceil((to.getTime() - from.getTime()) / (1000 * 3600 * 24))) || 0
+
+export const days = (from?: Date, to?: Date): number => {
+  if (!from || !to) {
+    return 0
+  }
+
+  const start = Date.UTC(from.getFullYear(), from.getMonth(), from.getDate())
+  const end = Date.UTC(to.getFullYear(), to.getMonth(), to.getDate())
+
+  if (end < start) {
+    return 0
+  }
+
+  return Math.floor((end - start) / 86400000) + 1
+}
+
 
 /**
  * Get number of hours between two dates.
@@ -303,11 +317,7 @@ export const calculateTotalPrice = (car: bookcarsTypes.Car, from: Date, to: Date
       currentDay += 1
     }
   } else {
-    const totalHours = hours(from, to)
-    totalDays = Math.floor(totalHours / 24)
-    const remainingHours = totalHours % 24
-
-    let remainingDays = totalDays
+  let remainingDays = totalDays
 
     if (remainingDays >= 30) {
       if (car.discountedMonthlyPrice || car.monthlyPrice) {
@@ -332,17 +342,6 @@ export const calculateTotalPrice = (car: bookcarsTypes.Car, from: Date, to: Date
 
     if (remainingDays > 0) {
       totalPrice += (car.discountedDailyPrice || car.dailyPrice) * remainingDays
-    }
-
-    // Handle hours if less than a day OR leftover time
-    if (totalDays === 0 || remainingHours > 0) {
-      const hourlyRate = car.discountedHourlyPrice || car.hourlyPrice
-      if (hourlyRate) {
-        totalPrice += hourlyRate * remainingHours
-      } else if (car.dailyPrice || car.discountedDailyPrice) {
-        // fallback to daily rate if no hourly price
-        totalPrice += (car.discountedDailyPrice || car.dailyPrice)
-      }
     }
   }
 
